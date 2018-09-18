@@ -30,7 +30,6 @@ public class LinkedLists<T extends ListItem> implements NodeList {
                 '}';
     }
 
-    @Override
     public boolean addItem(Node newItem) {
         if (this.root == null) {
             // The list was empty, so this item becomes the head of the list
