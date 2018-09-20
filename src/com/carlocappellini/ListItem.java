@@ -6,6 +6,7 @@ public abstract class ListItem {
      ListItem nextLink = null;
      ListItem previousLink = null;
 
+
     private Object value;
 
     public ListItem(Object value) {
@@ -31,5 +32,6 @@ public abstract class ListItem {
     public void setValue(ListItem value) {
         this.value = value;
     }
+
 
 }

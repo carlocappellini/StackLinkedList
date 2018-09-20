@@ -3,10 +3,18 @@ package com.carlocappellini;
 
 public class LinkedLists<T> implements NodeList {
 
-    ListItem root = null;
+    private ListItem root = null;
+    private String name;
 
-    public LinkedLists(Node root) {
+
+
+    public LinkedLists(String name, ListItem root) {
         this.root = root;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
 
@@ -14,6 +22,7 @@ public class LinkedLists<T> implements NodeList {
     public ListItem getRoot() {
         return this.root;
     }
+
 
 
     @Override
@@ -103,6 +112,7 @@ public class LinkedLists<T> implements NodeList {
 
             System.out.println("List is empty");
         } else {
+            System.out.println(this.getName());
 
             while (root != null) {
                 System.out.println(root.getValue());
@@ -112,5 +122,11 @@ public class LinkedLists<T> implements NodeList {
             }
         }
 
+    } @Override
+    public String toString() {
+        return "LinkedLists{" +
+                "root=" + this.root +
+                ", name='" + this.name + '\'' +
+                '}';
     }
 }

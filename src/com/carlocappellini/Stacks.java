@@ -1,37 +1,50 @@
 package com.carlocappellini;
 
-import java.util.LinkedList;
+
 import java.util.Stack;
 
-public class Stacks<T extends LinkedLists> implements StackList {
+public class Stacks<T> implements StackList {
 
-    public Stack getStack() {
-        return stack;
+    ListItem root = null;
+    private int size;
+
+    private String stackName;
+
+    private Stack<LinkedLists> stack;
+
+    private LinkedLists currentList;
+    ListItem listItem;
+
+
+    public String getStackName() {
+        return stackName;
     }
 
-    Stack<LinkedLists> stack;
-
-    public Stacks() {
+    public Stacks(String stackName) {
+        this.stackName = stackName;
         this.stack = new Stack<>();
     }
 
+    public int getSize() {
+        return size;
+    }
 
 
     @Override
     public Stack getRoot() {
-        return null;
+        return this.stack;
     }
 
     @Override
     public boolean addListToStack(LinkedLists linkedLists) {
         if (!stack.contains(linkedLists)) {
             this.stack.push(linkedLists);
-
-            System.out.println(linkedLists + " was added to stack");
+            size++;
+            System.out.println(linkedLists.getName() + " was added to stack");
             return true;
 
         } else {
-            System.out.println(linkedLists + " already exist, cannot add");
+            System.out.println(linkedLists.getName() + " already exist, cannot add");
             return false;
 
         }
@@ -39,14 +52,20 @@ public class Stacks<T extends LinkedLists> implements StackList {
 
     @Override
     public boolean removeLastListFromStack() {
-        System.out.println(stack.pop().getRoot() + " was deleted");
+        System.out.println(stack.pop().getName() + " was deleted");
+        size--;
+
         return true;
     }
 
 
-
     @Override
-    public void traverseStacks(LinkedLists root) {
-
+    public String toString() {
+        return "Stacks{" +
+                "size=" + size +
+                ", stackName='" + stackName + '\'' +
+                ", ListName=" + this.stack.peek().getName() +
+                '}';
     }
+
 }

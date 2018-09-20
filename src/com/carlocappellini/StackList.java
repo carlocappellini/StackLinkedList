@@ -4,7 +4,9 @@ import java.util.Stack;
 
 public interface StackList {
     Stack getRoot();
+
     boolean addListToStack(LinkedLists linkedLists);
+
     boolean removeLastListFromStack();
-    void traverseStacks(LinkedLists root);
+//    void traverseStacks(StackList root);
 }
