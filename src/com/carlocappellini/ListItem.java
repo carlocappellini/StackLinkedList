@@ -3,8 +3,8 @@ package com.carlocappellini;
 public abstract class ListItem {
 
 
-     Node nextLink = null;
-     Node previousLink = null;
+     ListItem nextLink = null;
+     ListItem previousLink = null;
 
     private Object value;
 
@@ -17,15 +17,19 @@ public abstract class ListItem {
         return value;
     }
 
-    abstract Node next();
+    abstract ListItem next();
 
-    abstract Node setNext(Node item);
+    abstract ListItem setNext(ListItem item);
 
-    abstract Node previous();
+    abstract ListItem previous();
 
-    abstract Node setPrevious(Node item);
+    abstract ListItem setPrevious(ListItem item);
 
-    abstract int compareTo(Node item);
+    abstract int compareTo(ListItem item);
 
+
+    public void setValue(ListItem value) {
+        this.value = value;
+    }
 
 }

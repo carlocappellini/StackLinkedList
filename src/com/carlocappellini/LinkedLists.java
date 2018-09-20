@@ -1,43 +1,30 @@
 package com.carlocappellini;
 
 
-public class LinkedLists<T extends ListItem> implements NodeList {
+public class LinkedLists<T> implements NodeList {
 
-    Node root;
+    ListItem root = null;
 
-    String listName;
-
-    public LinkedLists(String listName) {
-        this.listName = listName;
-        this.root = null;
-    }
-
-
-    public String getListName() {
-        return listName;
+    public LinkedLists(Node root) {
+        this.root = root;
     }
 
 
     @Override
-    public Node getRoot() {
+    public ListItem getRoot() {
         return this.root;
     }
 
-    @Override
-    public String toString() {
-        return "LinkedLists{" +
-                "listName='" + listName + '\'' +
-                '}';
-    }
 
-    public boolean addItem(Node newItem) {
+    @Override
+    public boolean addItem(ListItem newItem) {
         if (this.root == null) {
             // The list was empty, so this item becomes the head of the list
             this.root = newItem;
             return true;
         }
 
-        Node currentItem = this.root;
+        ListItem currentItem = this.root;
         while (currentItem != null) {
             int comparison = (currentItem.compareTo(newItem));
             if (comparison < 0) {
@@ -46,14 +33,17 @@ public class LinkedLists<T extends ListItem> implements NodeList {
                     currentItem = currentItem.next();
                 } else {
                     // there is no next, so insert at end of list
-                    currentItem.setNext(newItem).setPrevious(currentItem);
+                    currentItem.setNext(newItem);
+                    newItem.setPrevious(currentItem);
                     return true;
                 }
             } else if (comparison > 0) {
                 // newItem is less, insert before
                 if (currentItem.previous() != null) {
-                    currentItem.previous().setNext(newItem).setPrevious(currentItem.previous());
-                    newItem.setNext(currentItem).setPrevious(newItem);
+                    currentItem.previous().setNext(newItem);
+                    newItem.setPrevious(currentItem.previous());
+                    newItem.setNext(currentItem);
+                    currentItem.setPrevious(newItem);
                 } else {
                     // the node with a previous is the root
                     newItem.setNext(this.root);
@@ -72,7 +62,7 @@ public class LinkedLists<T extends ListItem> implements NodeList {
     }
 
     @Override
-    public boolean removeItem(Node item) {
+    public boolean removeItem(ListItem item) {
         if (item != null) {
             System.out.println("Deleting item " + item.getValue());
         }
@@ -105,8 +95,9 @@ public class LinkedLists<T extends ListItem> implements NodeList {
         return false;
     }
 
+
     @Override
-    public void traverse(Node root) {
+    public void traverse(ListItem root) {
 
         if (root == null) {
 

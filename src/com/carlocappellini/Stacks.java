@@ -3,13 +3,13 @@ package com.carlocappellini;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class Stacks<T extends LinkedLists<Node>> implements StackList {
+public class Stacks<T extends LinkedLists> implements StackList {
 
     public Stack getStack() {
         return stack;
     }
 
-    Stack<LinkedLists<ListItem>> stack;
+    Stack<LinkedLists> stack;
 
     public Stacks() {
         this.stack = new Stack<>();
@@ -39,7 +39,7 @@ public class Stacks<T extends LinkedLists<Node>> implements StackList {
 
     @Override
     public boolean removeLastListFromStack() {
-        System.out.println(stack.pop().getListName() + " was deleted");
+        System.out.println(stack.pop().getRoot() + " was deleted");
         return true;
     }
 
